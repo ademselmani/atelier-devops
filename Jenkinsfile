@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        SONARQUBE_CREDENTIALS = credentials('squ_90b82e6ff5bfef91e3a38553ee441f4c9d68ff68') 
+        SONARQUBE_CREDENTIALS = credentials('sqa_320a925fd27df741fc5bbe91deecc18fee7f8f0c') 
     }
 
     stages {
