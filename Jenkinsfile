@@ -7,10 +7,6 @@ pipeline {
         maven 'M2_HOME'
     }
 
-    environment {
-        SONARQUBE_CREDENTIALS = credentials('sqa_320a925fd27df741fc5bbe91deecc18fee7f8f0c') 
-    }
-
     stages {
 
         stage('GIT') {
@@ -27,7 +23,7 @@ pipeline {
 
         stage('MVN SONARQUBE') {
             steps {
-                sh "mvn sonar:sonar -Dsonar.login=${SONARQUBE_CREDENTIALS} -Dmaven.test.skip=true"
+                sh "mvn sonar:sonar -Dsonar.login=squ_c0931e4b9fc970410f5037c889771f1f9db8c76f -Dmaven.test.skip=true"
             }
         }
     }
