@@ -29,6 +29,12 @@ pipeline {
 
  }
 
+stage('MVN SONARQUBE'){
+steps{
+sh 'mvn snoar:sonar -Dsonar.login=admin -Dsonar.password=my_password -Dmaven.test.skip=true';
+}
+}
+
  }
 
 }
