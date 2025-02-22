@@ -1,40 +1,34 @@
 pipeline {
 
- agent any
+    agent any
 
- tools {jdk 'JAVA_HOME'
-        maven 'M2_HOME'}
+    tools {
+        jdk 'JAVA_HOME'
+        maven 'M2_HOME'
+    }
 
- stages {
+    environment {
+        SONARQUBE_CREDENTIALS = credentials('squ_90b82e6ff5bfef91e3a38553ee441f4c9d68ff68') 
+    }
 
- stage('GIT') {
+    stages {
 
-           steps {
+        stage('GIT') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ademselmani/atelier-devops.git'
+            }
+        }
 
-               git branch: 'main',
+        stage ('Compile Stage') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
 
-               url: 'https://github.com/ademselmani/atelier-devops.git'
-
-          }
-
-     }
-
- stage ('Compile Stage') {
-
- steps {
-
- sh 'mvn clean compile'
-
- }
-
- }
-
-stage('MVN SONARQUBE'){
-steps{
-sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=Adem94038666@ -Dmaven.test.skip=true';
-}
-}
-
- }
-
+        stage('MVN SONARQUBE') {
+            steps {
+                sh "mvn sonar:sonar -Dsonar.login=${SONARQUBE_CREDENTIALS} -Dmaven.test.skip=true"
+            }
+        }
+    }
 }
