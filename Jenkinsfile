@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     tools {
@@ -15,7 +14,7 @@ pipeline {
             }
         }
 
-        stage ('Compile Stage') {
+        stage('Compile Stage') {
             steps {
                 sh 'mvn clean compile'
             }
@@ -24,6 +23,12 @@ pipeline {
         stage('MVN SONARQUBE') {
             steps {
                 sh "mvn sonar:sonar -Dsonar.login=squ_c0931e4b9fc970410f5037c889771f1f9db8c76f -Dmaven.test.skip=true"
+            }
+        }
+
+        stage('Deploy to Nexus') {
+            steps {
+                sh 'mvn deploy -Dmaven.test.skip=true'
             }
         }
     }
