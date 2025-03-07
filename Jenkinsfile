@@ -25,11 +25,14 @@ pipeline {
                 sh 'docker build -t ademselmani/timesheet-devops:1.0.0 .'
              }
          }
-        stage('deploy Image ') {
-             steps {
-                sh 'docker push ademselmani/timesheet-devops:1.0.0 .'
-             }
-         }
+        stage('Deploy Image') {
+            steps {
+                sh '''
+                    docker login -u ademselmani -p 233JFT6118
+                    docker push ademselmani/timesheet-devops:1.0.0
+                    '''
+            }
+        }
 
         // stage('MVN SONARQUBE') {
         //     steps {
