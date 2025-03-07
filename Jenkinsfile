@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('build Image ') {
+        stage('deploy Image ') {
             steps {
                 sh 'docker build -t ademselmani/timesheet-devops:1.0.0 .'
              }
