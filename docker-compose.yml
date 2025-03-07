@@ -15,6 +15,7 @@ services:
   app:
     depends_on:
       - mysqldb
+    image: ademselmani/timesheet-devops:1.0.0
     build: ./
     restart: on-failure
     env_file: ./.env
