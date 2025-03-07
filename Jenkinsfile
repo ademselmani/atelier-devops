@@ -22,14 +22,14 @@ pipeline {
 
         stage('build Image ') {
             steps {
-                sh 'docker build -t ademselmani/timesheet-devops:1.0.0 .'
+                sh 'docker build -t ademselmani/timesheet-devops:1.0 .'
              }
          }
         stage('Deploy Image') {
             steps {
                 sh '''
                     docker login -u ademselmani -p 233JFT6118
-                    docker push ademselmani/timesheet-devops:1.0.0
+                    docker push ademselmani/timesheet-devops:1.0
                     '''
             }
         }
