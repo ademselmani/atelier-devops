@@ -28,11 +28,12 @@ pipeline {
 
        
 
-        stage('Build Image') {
+   stage('Build Image') {
     steps {
-        sh 'sudo docker build -t ademselmani/timesheet-devops:1.0 .'
+        sh 'docker build -t ademselmani/timesheet-devops:1.0 .'
     }
 }
+
 
 
         stage('Deploy Image') {
