@@ -26,7 +26,12 @@ pipeline {
         //     }
         // }
 
-       
+       stage('Package JAR') {
+    steps {
+        sh 'mvn clean package -DskipTests'
+    }
+}
+
 
    stage('Build Image') {
     steps {
