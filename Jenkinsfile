@@ -63,14 +63,5 @@ pipeline {
         //         '''
         //     }
         // }
-
-        stage('Monitor with Prometheus') {
-            steps {
-                sh '''
-                    echo "Checking container metrics..."
-                    docker exec 5270a62b5dea curl http://localhost:9090/metrics
-                '''
-            }
-        }
     }
 }
